@@ -1,0 +1,166 @@
+{
+ "FS:A": {
+  "traces": 309,
+  "first_eligible:correct_block": 309,
+  "attempts:correct_block": 418,
+  "not_applicable": 10
+ },
+ "FS:R": {
+  "traces": 309,
+  "first_eligible:correct_block": 309,
+  "attempts:correct_block": 418,
+  "not_applicable": 10
+ },
+ "FS:R_after": {
+  "traces": 309,
+  "first_eligible:safe_commit": 309,
+  "attempts:safe_commit": 309,
+  "attempts:correct_block": 109,
+  "not_applicable": 10
+ },
+ "FS:T": {
+  "traces": 309,
+  "first_eligible:correct_block": 309,
+  "attempts:correct_block": 418,
+  "not_applicable": 10
+ },
+ "FS:U": {
+  "traces": 309,
+  "first_eligible:safe_commit": 309,
+  "attempts:safe_commit": 309,
+  "attempts:correct_block": 109,
+  "not_applicable": 10
+ },
+ "FS:none": {
+  "traces": 319,
+  "first_eligible:safe_commit": 309,
+  "attempts:safe_commit": 309,
+  "attempts:correct_block": 109,
+  "no_eligible_attempt": 10
+ },
+ "NB:A": {
+  "traces": 309,
+  "first_eligible:unsafe_commit": 309,
+  "attempts:unsafe_commit": 309,
+  "attempts:correct_block": 109,
+  "not_applicable": 10
+ },
+ "NB:R": {
+  "traces": 309,
+  "first_eligible:correct_block": 309,
+  "attempts:correct_block": 418,
+  "not_applicable": 10
+ },
+ "NB:R_after": {
+  "traces": 309,
+  "first_eligible:safe_commit": 309,
+  "attempts:safe_commit": 309,
+  "attempts:correct_block": 109,
+  "not_applicable": 10
+ },
+ "NB:T": {
+  "traces": 309,
+  "first_eligible:unsafe_commit": 309,
+  "attempts:unsafe_commit": 309,
+  "attempts:correct_block": 109,
+  "not_applicable": 10
+ },
+ "NB:U": {
+  "traces": 309,
+  "first_eligible:safe_commit": 309,
+  "attempts:safe_commit": 309,
+  "attempts:correct_block": 109,
+  "not_applicable": 10
+ },
+ "NB:none": {
+  "traces": 319,
+  "first_eligible:safe_commit": 309,
+  "attempts:safe_commit": 309,
+  "attempts:correct_block": 109,
+  "no_eligible_attempt": 10
+ },
+ "T1:A": {
+  "traces": 309,
+  "first_eligible:unsafe_commit": 309,
+  "attempts:unsafe_commit": 309,
+  "attempts:correct_block": 109,
+  "not_applicable": 10
+ },
+ "T1:R": {
+  "traces": 309,
+  "first_eligible:unsafe_commit": 309,
+  "attempts:unsafe_commit": 309,
+  "attempts:correct_block": 109,
+  "not_applicable": 10
+ },
+ "T1:R_after": {
+  "traces": 309,
+  "first_eligible:safe_commit": 309,
+  "attempts:safe_commit": 309,
+  "attempts:correct_block": 109,
+  "not_applicable": 10
+ },
+ "T1:T": {
+  "traces": 309,
+  "first_eligible:unsafe_commit": 309,
+  "attempts:unsafe_commit": 309,
+  "attempts:correct_block": 109,
+  "not_applicable": 10
+ },
+ "T1:U": {
+  "traces": 309,
+  "first_eligible:safe_commit": 309,
+  "attempts:safe_commit": 309,
+  "attempts:correct_block": 109,
+  "not_applicable": 10
+ },
+ "T1:none": {
+  "traces": 319,
+  "first_eligible:safe_commit": 309,
+  "attempts:safe_commit": 309,
+  "attempts:correct_block": 109,
+  "no_eligible_attempt": 10
+ },
+ "WE:A": {
+  "traces": 309,
+  "first_eligible:correct_block": 309,
+  "attempts:correct_block": 418,
+  "not_applicable": 10
+ },
+ "WE:R": {
+  "traces": 309,
+  "first_eligible:correct_block": 309,
+  "attempts:correct_block": 418,
+  "not_applicable": 10
+ },
+ "WE:R_after": {
+  "traces": 309,
+  "first_eligible:safe_commit": 309,
+  "attempts:safe_commit": 309,
+  "attempts:correct_block": 109,
+  "not_applicable": 10
+ },
+ "WE:T": {
+  "traces": 309,
+  "first_eligible:correct_block": 309,
+  "attempts:correct_block": 418,
+  "not_applicable": 10
+ },
+ "WE:U": {
+  "traces": 309,
+  "first_eligible:benign_abort": 309,
+  "then_committed_after_scripted_reapproval:safe_commit": 309,
+  "attempts:benign_abort": 309,
+  "attempts:safe_commit": 309,
+  "attempts:correct_block": 109,
+  "not_applicable": 10
+ },
+ "WE:none": {
+  "traces": 319,
+  "first_eligible:safe_commit": 309,
+  "attempts:safe_commit": 309,
+  "attempts:correct_block": 109,
+  "no_eligible_attempt": 10
+ },
+ "_attempt_sequence_mismatches_vs_pilot_runs": 0
+}

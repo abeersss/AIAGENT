@@ -1,0 +1,2790 @@
+{
+ "summary": {
+  "suite_version_introduced": {
+   "v1.1.1": "2024-11-07 c0cc91e60 Add end time to workspace event 7, make update a patch",
+   "v1.1.2": "2025-01-15 bc5a5c303 Add change as part of v1.1.2",
+   "v1.2": "2025-01-16 0c7c4d565 add init file for v1.2",
+   "v1.2.1": "2025-04-30 ccb41e931 Fix injection tasks 11 and 12"
+  },
+  "user_task_7_fix_commit": "2024-11-07 c0cc91e60 Add end time to workspace event 7, make update a patch",
+  "reconstructed": 179,
+  "chosen_versions": {
+   "v1": 137,
+   "v1.1.1": 34,
+   "v1.2": 8
+  },
+  "with_published_run_date_before_v1.1.1": 157,
+  "of_those_chosen_v1": 130,
+  "date_evidence_contradicts_choice": [
+   {
+    "case_id": 120,
+    "pipeline": "command-r-plus",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-06-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 121,
+    "pipeline": "command-r-plus",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-06-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 123,
+    "pipeline": "gemini-1.5-flash-001",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-06-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 124,
+    "pipeline": "gemini-1.5-flash-001",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-06-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 125,
+    "pipeline": "gemini-1.5-flash-001",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-06-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 126,
+    "pipeline": "gemini-1.5-flash-001",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-06-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 127,
+    "pipeline": "gemini-1.5-flash-001",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-06-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 128,
+    "pipeline": "gemini-1.5-flash-001",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-06-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 129,
+    "pipeline": "gemini-1.5-flash-001",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-06-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 130,
+    "pipeline": "gemini-1.5-flash-002",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-11-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 131,
+    "pipeline": "gemini-1.5-flash-002",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-11-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 132,
+    "pipeline": "gemini-1.5-flash-002",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-11-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 133,
+    "pipeline": "gemini-1.5-flash-002",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-11-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 134,
+    "pipeline": "gemini-1.5-flash-002",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-11-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 135,
+    "pipeline": "gemini-1.5-flash-002",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-11-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 136,
+    "pipeline": "gemini-1.5-flash-002",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-11-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 137,
+    "pipeline": "gemini-1.5-pro-001",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-06-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 138,
+    "pipeline": "gemini-1.5-pro-001",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-06-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 139,
+    "pipeline": "gemini-1.5-pro-001",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-06-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 141,
+    "pipeline": "gemini-1.5-pro-001",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-06-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 142,
+    "pipeline": "gemini-1.5-pro-001",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-06-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 144,
+    "pipeline": "gemini-1.5-pro-002",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-11-04"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 145,
+    "pipeline": "gemini-1.5-pro-002",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-11-04"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 146,
+    "pipeline": "gemini-1.5-pro-002",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-11-04"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 148,
+    "pipeline": "gemini-1.5-pro-002",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-11-04"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 149,
+    "pipeline": "gemini-1.5-pro-002",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2024-11-04"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   },
+   {
+    "case_id": 270,
+    "pipeline": "meta-llama_Llama-3-70b-chat-hf",
+    "chosen": "v1.1.1",
+    "versions_tried": {
+     "v1": false,
+     "v1.1.1": true
+    },
+    "published_run_dates": [
+     "2021-09-05"
+    ],
+    "date_implies_v1": true,
+    "consistent": false
+   }
+  ],
+  "no_date_evidence_or_after": {
+   "claude-3-5-sonnet-20241022": 7,
+   "claude-3-7-sonnet-20250219": 15
+  }
+ },
+ "per_case": [
+  {
+   "case_id": 86,
+   "pipeline": "claude-3-5-sonnet-20240620",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-20"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 87,
+   "pipeline": "claude-3-5-sonnet-20240620",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-20"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 88,
+   "pipeline": "claude-3-5-sonnet-20240620",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-20"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 89,
+   "pipeline": "claude-3-5-sonnet-20240620",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-20"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 90,
+   "pipeline": "claude-3-5-sonnet-20240620",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-20"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 91,
+   "pipeline": "claude-3-5-sonnet-20240620",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-20"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 92,
+   "pipeline": "claude-3-5-sonnet-20240620",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-20"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 93,
+   "pipeline": "claude-3-5-sonnet-20241022",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-11-15"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 94,
+   "pipeline": "claude-3-5-sonnet-20241022",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-11-15"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 95,
+   "pipeline": "claude-3-5-sonnet-20241022",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-11-15"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 96,
+   "pipeline": "claude-3-5-sonnet-20241022",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-11-15"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 97,
+   "pipeline": "claude-3-5-sonnet-20241022",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-11-15"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 98,
+   "pipeline": "claude-3-5-sonnet-20241022",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-11-15"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 99,
+   "pipeline": "claude-3-5-sonnet-20241022",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-11-15"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 100,
+   "pipeline": "claude-3-7-sonnet-20250219",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2025-02-24"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 101,
+   "pipeline": "claude-3-7-sonnet-20250219",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2025-02-24"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 102,
+   "pipeline": "claude-3-7-sonnet-20250219",
+   "chosen": "v1.2",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": false,
+    "v1.1.2": false,
+    "v1.2": true
+   },
+   "published_run_dates": [
+    "2025-02-24"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 103,
+   "pipeline": "claude-3-7-sonnet-20250219",
+   "chosen": "v1.2",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": false,
+    "v1.1.2": false,
+    "v1.2": true
+   },
+   "published_run_dates": [
+    "2025-02-24"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 104,
+   "pipeline": "claude-3-7-sonnet-20250219",
+   "chosen": "v1.2",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": false,
+    "v1.1.2": false,
+    "v1.2": true
+   },
+   "published_run_dates": [
+    "2025-02-24"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 105,
+   "pipeline": "claude-3-7-sonnet-20250219",
+   "chosen": "v1.2",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": false,
+    "v1.1.2": false,
+    "v1.2": true
+   },
+   "published_run_dates": [
+    "2025-02-24"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 106,
+   "pipeline": "claude-3-7-sonnet-20250219",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2025-02-24"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 107,
+   "pipeline": "claude-3-7-sonnet-20250219",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2025-02-24"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 108,
+   "pipeline": "claude-3-7-sonnet-20250219",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2025-02-24"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 109,
+   "pipeline": "claude-3-7-sonnet-20250219",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2025-02-24"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 110,
+   "pipeline": "claude-3-7-sonnet-20250219",
+   "chosen": "v1.2",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": false,
+    "v1.1.2": false,
+    "v1.2": true
+   },
+   "published_run_dates": [
+    "2025-02-24"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 111,
+   "pipeline": "claude-3-7-sonnet-20250219",
+   "chosen": "v1.2",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": false,
+    "v1.1.2": false,
+    "v1.2": true
+   },
+   "published_run_dates": [
+    "2025-02-24"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 112,
+   "pipeline": "claude-3-7-sonnet-20250219",
+   "chosen": "v1.2",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": false,
+    "v1.1.2": false,
+    "v1.2": true
+   },
+   "published_run_dates": [
+    "2025-02-24"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 113,
+   "pipeline": "claude-3-7-sonnet-20250219",
+   "chosen": "v1.2",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": false,
+    "v1.1.2": false,
+    "v1.2": true
+   },
+   "published_run_dates": [
+    "2025-02-24"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 114,
+   "pipeline": "claude-3-7-sonnet-20250219",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2025-02-24"
+   ],
+   "date_implies_v1": false,
+   "consistent": null
+  },
+  {
+   "case_id": 115,
+   "pipeline": "command-r-plus",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 116,
+   "pipeline": "command-r-plus",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 117,
+   "pipeline": "command-r-plus",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 118,
+   "pipeline": "command-r-plus",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 119,
+   "pipeline": "command-r-plus",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 120,
+   "pipeline": "command-r-plus",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 121,
+   "pipeline": "command-r-plus",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 122,
+   "pipeline": "command-r",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 123,
+   "pipeline": "gemini-1.5-flash-001",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 124,
+   "pipeline": "gemini-1.5-flash-001",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 125,
+   "pipeline": "gemini-1.5-flash-001",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 126,
+   "pipeline": "gemini-1.5-flash-001",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 127,
+   "pipeline": "gemini-1.5-flash-001",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 128,
+   "pipeline": "gemini-1.5-flash-001",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 129,
+   "pipeline": "gemini-1.5-flash-001",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 130,
+   "pipeline": "gemini-1.5-flash-002",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-11-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 131,
+   "pipeline": "gemini-1.5-flash-002",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-11-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 132,
+   "pipeline": "gemini-1.5-flash-002",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-11-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 133,
+   "pipeline": "gemini-1.5-flash-002",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-11-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 134,
+   "pipeline": "gemini-1.5-flash-002",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-11-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 135,
+   "pipeline": "gemini-1.5-flash-002",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-11-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 136,
+   "pipeline": "gemini-1.5-flash-002",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-11-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 137,
+   "pipeline": "gemini-1.5-pro-001",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 138,
+   "pipeline": "gemini-1.5-pro-001",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 139,
+   "pipeline": "gemini-1.5-pro-001",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 140,
+   "pipeline": "gemini-1.5-pro-001",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 141,
+   "pipeline": "gemini-1.5-pro-001",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 142,
+   "pipeline": "gemini-1.5-pro-001",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 143,
+   "pipeline": "gemini-1.5-pro-002",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-11-04"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 144,
+   "pipeline": "gemini-1.5-pro-002",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-11-04"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 145,
+   "pipeline": "gemini-1.5-pro-002",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-11-04"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 146,
+   "pipeline": "gemini-1.5-pro-002",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-11-04"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 147,
+   "pipeline": "gemini-1.5-pro-002",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-11-04"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 148,
+   "pipeline": "gemini-1.5-pro-002",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-11-04"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 149,
+   "pipeline": "gemini-1.5-pro-002",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2024-11-04"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  },
+  {
+   "case_id": 150,
+   "pipeline": "gpt-3.5-turbo-0125",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 151,
+   "pipeline": "gpt-3.5-turbo-0125",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 152,
+   "pipeline": "gpt-3.5-turbo-0125",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 153,
+   "pipeline": "gpt-3.5-turbo-0125",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 154,
+   "pipeline": "gpt-3.5-turbo-0125",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 155,
+   "pipeline": "gpt-3.5-turbo-0125",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 156,
+   "pipeline": "gpt-3.5-turbo-0125",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 157,
+   "pipeline": "gpt-4-0125-preview",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 158,
+   "pipeline": "gpt-4-0125-preview",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 159,
+   "pipeline": "gpt-4-0125-preview",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 160,
+   "pipeline": "gpt-4-0125-preview",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 161,
+   "pipeline": "gpt-4-0125-preview",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 162,
+   "pipeline": "gpt-4-0125-preview",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 163,
+   "pipeline": "gpt-4-turbo-2024-04-09",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 164,
+   "pipeline": "gpt-4-turbo-2024-04-09",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 165,
+   "pipeline": "gpt-4-turbo-2024-04-09",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 166,
+   "pipeline": "gpt-4-turbo-2024-04-09",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 167,
+   "pipeline": "gpt-4-turbo-2024-04-09",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 168,
+   "pipeline": "gpt-4-turbo-2024-04-09",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 169,
+   "pipeline": "gpt-4-turbo-2024-04-09",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 170,
+   "pipeline": "gpt-4o-2024-05-13-repeat_user_prompt",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 171,
+   "pipeline": "gpt-4o-2024-05-13-repeat_user_prompt",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 172,
+   "pipeline": "gpt-4o-2024-05-13-repeat_user_prompt",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 173,
+   "pipeline": "gpt-4o-2024-05-13-repeat_user_prompt",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 174,
+   "pipeline": "gpt-4o-2024-05-13-repeat_user_prompt",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 175,
+   "pipeline": "gpt-4o-2024-05-13-repeat_user_prompt",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 176,
+   "pipeline": "gpt-4o-2024-05-13-repeat_user_prompt",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 177,
+   "pipeline": "gpt-4o-2024-05-13-spotlighting_with_delimiting",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 178,
+   "pipeline": "gpt-4o-2024-05-13-spotlighting_with_delimiting",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 179,
+   "pipeline": "gpt-4o-2024-05-13-spotlighting_with_delimiting",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 180,
+   "pipeline": "gpt-4o-2024-05-13-spotlighting_with_delimiting",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 181,
+   "pipeline": "gpt-4o-2024-05-13-spotlighting_with_delimiting",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 182,
+   "pipeline": "gpt-4o-2024-05-13-spotlighting_with_delimiting",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 183,
+   "pipeline": "gpt-4o-2024-05-13-spotlighting_with_delimiting",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 184,
+   "pipeline": "gpt-4o-2024-05-13-tool_filter",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 185,
+   "pipeline": "gpt-4o-2024-05-13-tool_filter",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 186,
+   "pipeline": "gpt-4o-2024-05-13-tool_filter",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 187,
+   "pipeline": "gpt-4o-2024-05-13-tool_filter",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 188,
+   "pipeline": "gpt-4o-2024-05-13-tool_filter",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 189,
+   "pipeline": "gpt-4o-2024-05-13-tool_filter",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 190,
+   "pipeline": "gpt-4o-2024-05-13-tool_filter",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 191,
+   "pipeline": "gpt-4o-2024-05-13-transformers_pi_detector",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 192,
+   "pipeline": "gpt-4o-2024-05-13-transformers_pi_detector",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 194,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 195,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 196,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 197,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 198,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 199,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 202,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 203,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 204,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 205,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 206,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 207,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 208,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 209,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 210,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 211,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 212,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 214,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 215,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 216,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 217,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 218,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 219,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 220,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 221,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 222,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 223,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 224,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 225,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 226,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 227,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 228,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 229,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 230,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 231,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 232,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 233,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 234,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 235,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 236,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 237,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 238,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 239,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 240,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 241,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 242,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 243,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 244,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 245,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 246,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 247,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 248,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 249,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 252,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 253,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 254,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 255,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 256,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 257,
+   "pipeline": "gpt-4o-2024-05-13",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-06-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 258,
+   "pipeline": "gpt-4o-mini-2024-07-18",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-07-19"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 259,
+   "pipeline": "gpt-4o-mini-2024-07-18",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-07-19"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 260,
+   "pipeline": "gpt-4o-mini-2024-07-18",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-07-19"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 261,
+   "pipeline": "gpt-4o-mini-2024-07-18",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-07-19"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 262,
+   "pipeline": "gpt-4o-mini-2024-07-18",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-07-19"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 263,
+   "pipeline": "gpt-4o-mini-2024-07-18",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-07-19"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 264,
+   "pipeline": "gpt-4o-mini-2024-07-18",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2024-07-19"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 265,
+   "pipeline": "meta-llama_Llama-3-70b-chat-hf",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2021-09-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 266,
+   "pipeline": "meta-llama_Llama-3-70b-chat-hf",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2021-09-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 267,
+   "pipeline": "meta-llama_Llama-3-70b-chat-hf",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2021-09-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 268,
+   "pipeline": "meta-llama_Llama-3-70b-chat-hf",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2021-09-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 269,
+   "pipeline": "meta-llama_Llama-3-70b-chat-hf",
+   "chosen": "v1",
+   "versions_tried": {
+    "v1": true
+   },
+   "published_run_dates": [
+    "2021-09-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": true
+  },
+  {
+   "case_id": 270,
+   "pipeline": "meta-llama_Llama-3-70b-chat-hf",
+   "chosen": "v1.1.1",
+   "versions_tried": {
+    "v1": false,
+    "v1.1.1": true
+   },
+   "published_run_dates": [
+    "2021-09-05"
+   ],
+   "date_implies_v1": true,
+   "consistent": false
+  }
+ ]
+}

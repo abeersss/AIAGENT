@@ -1,0 +1,532 @@
+{
+ "primary": {
+  "NB:none": {
+   "outcomes": {
+    "safe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 0,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 309,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 182
+   }
+  },
+  "WE:none": {
+   "outcomes": {
+    "safe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 0,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 309,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 182
+   }
+  },
+  "FS:none": {
+   "outcomes": {
+    "safe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 0,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 309,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 182
+   }
+  },
+  "NB:U": {
+   "outcomes": {
+    "safe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 319,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 309,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 0
+   }
+  },
+  "WE:U": {
+   "outcomes": {
+    "benign_abort": 309,
+    "safe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 319,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 309,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 309,
+    "retry_committed": 309,
+    "reapproved": 309,
+    "utility": 0
+   }
+  },
+  "FS:U": {
+   "outcomes": {
+    "safe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 319,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 309,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 0
+   }
+  },
+  "NB:A": {
+   "outcomes": {
+    "unsafe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 319,
+    "traces_unsafe_commit": 309,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 0,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 0
+   }
+  },
+  "WE:A": {
+   "outcomes": {
+    "correct_block": 429
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 319,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 319,
+    "traces_safe_commit": 0,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 0
+   }
+  },
+  "FS:A": {
+   "outcomes": {
+    "correct_block": 429
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 319,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 319,
+    "traces_safe_commit": 0,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 0
+   }
+  },
+  "NB:T": {
+   "outcomes": {
+    "unsafe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 319,
+    "traces_unsafe_commit": 309,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 0,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 182
+   }
+  },
+  "WE:T": {
+   "outcomes": {
+    "correct_block": 429
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 319,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 319,
+    "traces_safe_commit": 0,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 0
+   }
+  },
+  "FS:T": {
+   "outcomes": {
+    "correct_block": 429
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 319,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 319,
+    "traces_safe_commit": 0,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 0
+   }
+  },
+  "NB:R": {
+   "outcomes": {
+    "correct_block": 429
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 319,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 319,
+    "traces_safe_commit": 0,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 0
+   }
+  },
+  "WE:R": {
+   "outcomes": {
+    "correct_block": 429
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 319,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 319,
+    "traces_safe_commit": 0,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 0
+   }
+  },
+  "FS:R": {
+   "outcomes": {
+    "correct_block": 429
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 319,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 319,
+    "traces_safe_commit": 0,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 0
+   }
+  },
+  "NB:R_after": {
+   "outcomes": {
+    "safe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 201,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 309,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 182
+   }
+  },
+  "WE:R_after": {
+   "outcomes": {
+    "safe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 201,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 309,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 182
+   }
+  },
+  "FS:R_after": {
+   "outcomes": {
+    "safe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 201,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 309,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 182
+   }
+  }
+ },
+ "secondary": {
+  "FS:none": {
+   "outcomes": {
+    "safe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 0,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 309,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 182
+   }
+  },
+  "T1:none": {
+   "outcomes": {
+    "safe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 0,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 309,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 182
+   }
+  },
+  "FS:U": {
+   "outcomes": {
+    "safe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 319,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 309,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 0
+   }
+  },
+  "T1:U": {
+   "outcomes": {
+    "safe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 201,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 309,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 100
+   }
+  },
+  "FS:A": {
+   "outcomes": {
+    "correct_block": 429
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 319,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 319,
+    "traces_safe_commit": 0,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 0
+   }
+  },
+  "T1:A": {
+   "outcomes": {
+    "unsafe_commit": 201,
+    "correct_block": 120,
+    "safe_commit": 108
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 201,
+    "traces_unsafe_commit": 201,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 108,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 100
+   }
+  },
+  "FS:T": {
+   "outcomes": {
+    "correct_block": 429
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 319,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 319,
+    "traces_safe_commit": 0,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 0
+   }
+  },
+  "T1:T": {
+   "outcomes": {
+    "unsafe_commit": 201,
+    "correct_block": 120,
+    "safe_commit": 108
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 201,
+    "traces_unsafe_commit": 201,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 108,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 182
+   }
+  },
+  "FS:R": {
+   "outcomes": {
+    "correct_block": 429
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 319,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 319,
+    "traces_safe_commit": 0,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 0
+   }
+  },
+  "T1:R": {
+   "outcomes": {
+    "unsafe_commit": 201,
+    "correct_block": 120,
+    "safe_commit": 108
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 201,
+    "traces_unsafe_commit": 201,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 108,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 182
+   }
+  },
+  "FS:R_after": {
+   "outcomes": {
+    "safe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 201,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 309,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 182
+   }
+  },
+  "T1:R_after": {
+   "outcomes": {
+    "safe_commit": 309,
+    "correct_block": 120
+   },
+   "traces": {
+    "traces": 319,
+    "fired": 201,
+    "traces_unsafe_commit": 0,
+    "traces_benign_abort": 0,
+    "traces_correct_block": 118,
+    "traces_safe_commit": 309,
+    "retry_committed": 0,
+    "reapproved": 0,
+    "utility": 182
+   }
+  }
+ },
+ "latency": {
+  "NB": {
+   "n": 2574,
+   "median": 1.4026480000666197,
+   "p95": 2.5524039999709203
+  },
+  "WE": {
+   "n": 2883,
+   "median": 1.308288000018365,
+   "p95": 2.478093000036097
+  },
+  "FS": {
+   "n": 2574,
+   "median": 1.3347335001299143,
+   "p95": 2.5296520000210876
+  },
+  "T1": {
+   "n": 2574,
+   "median": 1.4914169998974103,
+   "p95": 2.770474999806538
+  }
+ }
+}

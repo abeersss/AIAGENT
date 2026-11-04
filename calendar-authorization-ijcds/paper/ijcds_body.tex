@@ -1,0 +1,517 @@
+\myabstract[1]{\vspace{-1cm}\hrule\vspace{2mm}\textbf{Abstract:} Tool-using AI agents can apply calendar changes after the approval behind them has become stale. Between a user's approval and the agent's write, a co-organizer may add an attendee or move the meeting, or the user may revoke consent. This paper asks whether atomic field-scoped authorization keeps legitimate updates after unrelated concurrent edits while blocking writes after approval-invalidating edits or revocation. We replayed 319 recorded traces from 23 public model pipelines for one AgentDojo rescheduling task, user\_task\_7, through an SQLite tool gateway. One concurrent change was injected before each trace's first eligible update, and an independently specified safety rule scored the outcomes. With every check inside one transaction, no binding committed all 309 eligible updates after an attendee change or event move. Whole-event version binding blocked those updates but also blocked all 309 updates after an unrelated description edit. Field-scoped binding committed those 309 updates immediately and blocked every invalidating edit and revocation. The same field policy checked before the write committed all 309 unsafe updates, and 207 of 500 real two-thread races. Median gateway latency was about 1.5~ms under every binding. This is a controlled single-task case study; the result depends on which fields an approval protects.
+\newline
+\newline
+\textbf{Keywords:} AI agents, authorization, concurrency control, prompt injection, time-of-check to time-of-use, calendar systems
+\vspace{1mm}
+\hrule}
+
+\maketitle
+
+\section{INTRODUCTION}
+\label{sec:introduction}
+Language-model agents increasingly act on users' behalf through tools that read and change shared records such as e-mail, documents and calendars. Text that reaches the model through those tools can carry instructions, and indirect prompt injection lets an attacker steer an agent through content it retrieves \cite{greshake2023}. AgentDojo made this threat measurable: it is a dynamic benchmark of realistic tool-using tasks with attacks planted in tool outputs \cite{agentdojo2024}. Its public repository also contains the recorded runs of many model pipelines \cite{agentdojorepo}.
+
+Most proposed defenses decide whether a tool call may proceed before the call runs. Progent checks each call against a programmable privilege policy \cite{progent2025}. CaMeL separates control flow from untrusted data and enforces capabilities when tools are invoked \cite{camel2025}. FIDES aborts calls that violate an information-flow policy \cite{fides2025}. A decision made before the call, however, is made against a snapshot of the world. If the record or the approval changes before the write lands, the decision no longer describes what is committed. This is the time-of-check to time-of-use (TOCTOU) problem, documented in operating systems since the 1970s \cite{mcphee1974,bishop1996} and recently shown for LLM agents \cite{mindthegap2025}.
+
+Recent preprints address this boundary for agents. Santos-Grueiro defines commit-time authorization for durable agent effects \cite{santosgrueiro2026}. AID-Guard places authorization and effects in one SQLite transaction \cite{aidguard2026}. Zheng et al.\ show that version-based guards block most benign races in infrastructure tasks \cite{zheng2026stale}. None of these studies examines which properties of a calendar event an approval actually depends on. It also remains open what it costs to protect the whole event rather than those properties.
+
+The question matters for calendars in particular. An agent that reschedules a meeting writes only the start and end times. The approval, however, was given for a meeting with particular attendees and a particular status. If a co-organizer adds an attendee, the agent's write now affects, and e-mails, someone the user never considered, even though the agent never touches the attendee list. Conversely, if a co-organizer only edits the meeting description, an approval bound to the whole event is invalidated for no good reason.
+
+This paper reports a controlled empirical case study of one question:
+
+\textit{Do atomic field-scoped authorization checks preserve legitimate calendar updates after unrelated concurrent edits, while blocking writes after an approval-invalidating edit or a revocation?}
+
+The main comparison holds the check inside one database transaction and varies only what the approval is bound to: nothing, the whole event's version, or a declared set of protected fields. A secondary comparison keeps the field-scoped policy fixed and moves the check before the write. The contributions are:
+\begin{itemize}
+\item an explicit dependency specification for rescheduling an existing event, together with a safety rule that is written and implemented independently of the gateway;
+\item a tool gateway with field-scoped binding, patch writes and structured denials, built on SQLite transactions;
+\item a replay of 319 recorded traces from 23 public model pipelines, plus 500 real two-thread races per gateway, with outcomes separated into unsafe commits, correct denials, safe updates initially blocked, immediate safe commits and scripted recovery;
+\item an audit of the trace data, which reports a benchmark defect, ambiguous benchmark versions and the limits of what the replay can show.
+\end{itemize}
+
+All results concern a single benchmark task. Section~\ref{sec:limitations} states what this does and does not support.
+
+\section{RELATED WORK}
+\label{sec:related}
+\subsection{Agent benchmarks and pre-call policies}
+AgentDojo \cite{agentdojo2024} provides suites of user tasks, injection tasks and stateful environments, scored by functions that inspect the final environment. Its Workspace suite includes a calendar whose events carry a title, description, start and end time, location, participants and status. The repository used here is a fork that adds recorded runs of many model pipelines \cite{agentdojorepo}.
+
+Progent intercepts each tool call and allows or blocks it before execution, according to a policy over tool names and arguments \cite{progent2025}. CaMeL derives capabilities from a trusted plan and checks them when tools are called \cite{camel2025}. FIDES enforces information-flow labels and aborts a proposed call that violates the policy \cite{fides2025}. All three decide before the effect happens. None is designed to re-validate the state of the target record at the moment the write commits.
+
+\subsection{TOCTOU and commit-time authorization}
+McPhee described check-then-use integrity flaws in OS/VS2 \cite{mcphee1974}, and Bishop and Dilger analysed race conditions in file accesses \cite{bishop1996}. For LLM agents, Lilienthal and Hong built TOCTOU-Bench from AgentDojo tasks and proposed mitigations that shorten, rather than close, the window between a check and its use \cite{mindthegap2025}.
+
+Santos-Grueiro defines commit-time authorization: a durable effect is allowed only if its authorizing evidence is still fresh, refers to the same effect and remains eligible at commit \cite{santosgrueiro2026}. That work separates authorized commits from endpoint success on a custom 54-task invalidation suite, using a fail-closed monitor rather than a transactional store.
+
+AID-Guard keeps authority state in SQLite and, for atomic providers, performs the claim and the provider mutation in one transaction \cite{aidguard2026}. It delegates resource-version preconditions to the provider and is evaluated on loopback MCP services, external payment and e-mail providers, and AgentDojo. In the version we read, it does not compare the same policy at two enforcement points, and it does not measure aborts caused by unrelated concurrent edits.
+
+Zheng et al.\ compare a global-epoch guard, a read-set version guard and a semantic-predicate guard on 16 infrastructure mutation tasks in a simulator \cite{zheng2026stale}. The two freshness-based guards eliminate unsafe commits but block most benign races; the predicate guard blocks none, at the price of requiring a complete contract.
+
+\subsection{Concurrency control and conditional writes}
+Optimistic concurrency control validates a transaction's reads at commit \cite{kung1981}. The lost update anomaly, where a write based on stale state overwrites a concurrent change, is a classic isolation failure \cite{berenson1995}. HTTP conditional requests implement the same idea for web resources with entity tags and \texttt{If-Match} \cite{rfc9110}. The reference-monitor principle requires that every access be checked against current authority \cite{anderson1972,saltzer1975}. SQLite's \texttt{BEGIN IMMEDIATE} starts a write transaction at once, so that a competing writer receives \texttt{SQLITE\_BUSY} instead of interleaving \cite{sqlitetxn}. None of these mechanisms is new here. What this study adds is their calendar-specific use at the agent tool boundary, and a measurement of what each binding scope costs.
+
+Table~\ref{tab:related} summarizes the comparison. Cells describe only what each cited source reports.
+
+\begin{table*}[t]
+\caption{Positioning against the closest work. Preprints are marked; cells summarize only what each source reports.}
+\label{tab:related}
+\centering
+\footnotesize
+\begin{tabular}{p{2.9cm}p{3.2cm}p{2.5cm}p{2.9cm}p{3.9cm}}
+\toprule
+Work & Evaluation setting & Check point & Binding to object state & Benign aborts from unrelated edits \\
+\midrule
+AgentDojo \cite{agentdojo2024} & Benchmark: 4 suites of tool tasks with injections & n/a (benchmark) & n/a & n/a \\
+Progent (preprint) \cite{progent2025} & AgentDojo and other agent benchmarks & Before each tool call & Not described & Not measured \\
+CaMeL (preprint) \cite{camel2025} & AgentDojo & When tools are called & Not described & Not measured \\
+Santos-Grueiro (preprint) \cite{santosgrueiro2026} & Custom 54-task invalidation suite & Commit boundary (monitor) & Target, version and ticket in the definition & Not reported \\
+AID-Guard (preprint) \cite{aidguard2026} & MCP, payment and e-mail providers; AgentDojo & Authority transaction (SQLite) & Delegated to provider preconditions & Not measured \\
+Zheng et al.\ (preprint) \cite{zheng2026stale} & 16 simulated infrastructure tasks & At commit (simulated) & Epoch, read-set version, predicate & Measured (infrastructure) \\
+This study & AgentDojo user\_task\_7, 319 recorded traces & Inside the write transaction & None, whole event, protected fields & Measured (calendar reschedule) \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{THREAT MODEL}
+\label{sec:threat}
+The \emph{user} owns the calendar and approves specific changes. The \emph{agent} proposes tool calls. It may follow injected instructions, so it is untrusted: anything it attempts must pass the gateway. \emph{Other actors}, such as co-organizers or the user's other devices, change events concurrently through their own connections. These changes are benign in intent but can invalidate an approval. The \emph{gateway} and the \emph{event store} are trusted and form the only path by which the agent can change a calendar event.
+
+The security property is about committed state, not attempts. A committed agent update to event $e$ is authorized only if (i) an approval for that user, action and event was live when the update committed; (ii) the written arguments are among the approved values; and (iii) the properties of $e$ that the approval depends on still equal what the user saw when approving. A change that the agent attempts but the gateway denies is not a security failure. An unrelated concurrent edit that causes a legitimate update to be denied is a usability cost.
+
+Out of scope are a compromised gateway or database, side channels, denial of service, atomicity across several stores, and the correctness of side effects such as notification e-mails. Approvals come only from a trusted fixture and are never derived from tool output, so an injected instruction cannot create one.
+
+\section{SYSTEM DESIGN}
+\label{sec:design}
+Figure~\ref{fig:arch} shows the gateway. Writes are mediated; reads and non-calendar tools pass through unchanged.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/fig1_architecture.pdf}
+\caption{Gateway architecture. The approval check, the binding check, the patch write and the log append run in one SQLite write transaction. Grants, concurrent edits and revocations commit on separate connections, and the safety rule reads only the raw log.}
+\label{fig:arch}
+\end{figure*}
+
+\subsection{Approvals}
+An approval records the user, the action, the stable event identifier and the allowed argument values. For user\_task\_7 these are a new start of \texttt{2024-05-20 10:00} and an end that is either omitted (the duration is preserved) or \texttt{2024-05-20 11:00}. The approval also records the event's version and a snapshot of its protected fields at the moment of approval. Approvals are granted by a trusted fixture derived from the benchmark's own task definition and are revoked only by the experiment controller.
+
+\subsection{Protected fields}
+Table~\ref{tab:fields} lists the fields of a calendar event and states whether an approval to reschedule it depends on each one. The written fields are protected to prevent lost updates \cite{berenson1995}. Attendees and status are protected even though the agent never writes them, because they determine whom the change affects and whether the meeting is still the one the user approved. Description, location and title are treated as editorial.
+
+\begin{table}[t]
+\caption{Fields an approval to reschedule an existing event depends on}
+\label{tab:fields}
+\centering
+\footnotesize
+\begin{tabular}{p{1.9cm}p{1.15cm}p{4.0cm}}
+\toprule
+Field & Protected & Reason \\
+\midrule
+start, end & yes & Written by the agent; a concurrent move would be overwritten (lost update) \\
+participants & yes & Read dependence: an attendee change alters who is affected and notified \\
+status & yes & A cancelled meeting is not the meeting the user approved \\
+description, location, title & no & Editorial; they do not change whom or what the time change affects \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Binding scopes and the transaction boundary}
+Three binding scopes are compared. \emph{No binding} (NB) checks only that the approval is live and that the arguments are approved. \emph{Whole-event binding} (WE) also requires the event's version to equal the version recorded in the approval, so that any change to the event invalidates it. \emph{Field-scoped binding} (FS) instead requires every protected field to equal its snapshot.
+
+In all three, the gateway opens \texttt{BEGIN IMMEDIATE}, performs the checks, applies the write, appends a log row and commits \cite{sqlitetxn}. The write is a \emph{patch}: it reads the current stored row inside the transaction and replaces only the start and end. A concurrent edit to any other field therefore survives a successful update. On denial the gateway returns a structured reason (approval revoked, version mismatch, protected field changed, or arguments not approved), so that an agent could request renewed approval.
+
+\subsection{Ordering}
+Because \texttt{BEGIN IMMEDIATE} acquires the database write lock, a revocation and an agent update are serialized, and the commit order is the log's sequence order. If the revocation commits first, the update is denied. If the update commits first, it stands, and the revocation governs only later attempts. The secondary variant (T1) checks the same field-scoped policy in its own transaction and then writes in a second one. A change that commits between those two transactions is therefore not seen.
+
+\section{EXPERIMENTAL METHOD}
+\label{sec:method}
+\subsection{Data and trace accounting}
+All traces come from the repository \texttt{sequrity-ai/}\allowbreak\texttt{agentdojo-benchmark}, commit \texttt{b29fdb3} (6 March 2026; package version 0.1.35; MIT license) \cite{agentdojorepo}. The task is the Workspace suite's \texttt{user\_task\_7}: \textit{``Please reschedule my Dental check-up to 2024-05-20 at 10:00.''} It is the only Workspace task whose ground truth updates an existing event's time. Task \texttt{user\_task\_8} adds participants and is not studied here.
+
+Table~\ref{tab:accounting} reconciles the counts. Of the repository's 29 pipelines, 23 have at least one replayable trace of this task. The 23 pipelines therefore cover \emph{one} task; they are not 23 independent tasks.
+
+\begin{table}[t]
+\caption{Trace accounting for AgentDojo Workspace user\_task\_7}
+\label{tab:accounting}
+\centering
+\footnotesize
+\begin{tabular}{p{5.8cm}r}
+\toprule
+Step & Traces \\
+\midrule
+Trace files for the task in the repository & 416 \\
+\quad with at least one recorded tool call (replayable) & 371 \\
+\quad with no reschedule call & $-$46 \\
+Candidates with a reschedule call (23 pipelines) & 325 \\
+\quad benchmark version logged in the trace (v1.2.1) & 140 \\
+\quad version reconstructed by reproduction & 179 \\
+\quad version unresolved, excluded & $-$6 \\
+Version-resolved replays & 319 \\
+\quad first reschedule attempt eligible & 201 \\
+\quad first eligible attempt is a later reschedule call & 108 \\
+\quad no eligible attempt (not applicable) & $-$10 \\
+Eligible traces in the injected-change scenarios & 309 \\
+\quad recorded without attack / under an attack template & 19 / 290 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textit{Version resolution.} For the 179 traces without a recorded version, the version was taken to be the first suite version (v1, v1.1.1, v1.1.2, v1.2, v1.2.1, v1.2.2) under which an unmodified replay reproduces the logged utility and, for attacked traces, the logged security result. This chose v1 for 137 traces, v1.1.1 for 34 and v1.2 for 8.
+
+Two independent pieces of evidence bound this choice. First, the repository history shows that v1.1.1, whose first change is ``Add end time to workspace event 7, make update a patch'', was introduced on 7 November 2024. The benchmark's published results table dates 157 of the 179 traces earlier than that, so those traces must have been recorded under v1. Of those 157, 130 were assigned v1, but 27 were assigned v1.1.1, so reproduction-based reconstruction is not reliable for those 27. Second, in this task the target event and the approval are byte-identical in all six versions. Re-running all 179 reconstructed traces under v1 changed none of the 4,296 safety outcomes, but changed the benchmark's utility verdict in 462 runs. The version therefore affects only utility scoring, never the results reported below.
+
+\textit{Eligibility.} An attempt is \emph{eligible} if its arguments match the approval exactly. The first recorded tool call of every trace is a read (\texttt{search\_calendar\_events} in 249 traces, \texttt{get\_current\_day} in 70). In 201 traces the first reschedule call is eligible. In the other 118 it is not, mostly because the model wrote times with seconds (\texttt{10:00:00}, 113 traces), an ISO \texttt{T} separator (1) or a different start time (4); the benchmark's tool rejects the first two formats. Of these 118 traces, 108 reach an eligible attempt on a later recorded call and 10 never do.
+
+\subsection{Injected concurrent changes}
+For each eligible trace, binding and condition, the recorded calls were replayed in order against a fresh environment, with exactly one concurrent change injected immediately before the first eligible attempt. The conditions were:
+\begin{itemize}
+\item none: a control with no concurrent change;
+\item U, unrelated edit: a co-organizer appends to the description;
+\item A, invalidating edit: a co-organizer adds an attendee;
+\item T, invalidating edit: someone moves the event by one day;
+\item R, revocation: the user revokes the approval before the write;
+\item R-after, ordering control: the revocation lands just after the write commits.
+\end{itemize}
+Each change commits through its own transaction and is mirrored into the benchmark environment. For the atomic gateways it lands before the write transaction begins; for T1 it lands between the check and the write. The injection point is the same recorded call for every gateway: in all 319 resolved traces it coincides with the first eligible attempt. The replay is open-loop, so recorded later calls are replayed unchanged whatever the gateway answered.
+
+\subsection{Independent safety oracle}
+The safety rule was written before the pilot was run. It is implemented in a module that does not import the gateway's binding code and reads only the raw commit log, including the before-image of each attempt and the approval-time snapshot. A committed update is \emph{safe} only if all four conditions hold:
+\begin{itemize}
+\item \textbf{S1:} its approval was granted before the commit and not revoked before it;
+\item \textbf{S2:} its arguments are approved;
+\item \textbf{S3:} participants and status equal the snapshot;
+\item \textbf{S4:} start and end equal the snapshot.
+\end{itemize}
+Every attempt is placed in one of five categories:
+\begin{itemize}
+\item an \emph{unsafe commit};
+\item a \emph{correct denial} (the rule would also have failed);
+\item a \emph{safe update initially blocked}: a denial although S1 to S4 held, also called a benign abort;
+\item an \emph{immediate safe commit};
+\item a safe commit reached only after \emph{scripted recovery}.
+\end{itemize}
+Scripted recovery works as follows. After a denial for a stale binding, the fixture re-approves only when the concurrent change was unrelated, and the replay retries the same call once. This tests the gateway's protocol, not whether a model would recover. Regenerating every outcome from the 7,656 raw logs reproduced the recorded attempt sequences with zero mismatches.
+
+\subsection{True concurrency and latency}
+To test serialization beyond deterministic schedules, a revocation and an agent update were run 500 times per gateway on two SQLite connections in two threads. Both were released together with independent uniform delays of 0 to 4~ms (seed 20261104). The pre-write variant had a 2~ms pause between its check and its write. Forced orders, revocation first and update first, were also run.
+
+Gateway latency is the time spent on authorization and the SQLite transaction, excluding the benchmark mirror. It was compared on matched calls: the same reschedule calls of the same traces under the no-change condition. All runs used Python 3.13.18 and SQLite 3.53.1 with the default rollback journal and \texttt{synchronous=FULL}, on a 2-vCPU Intel Xeon (2.10~GHz) Linux container.
+
+\subsection{What was not run}
+No fresh model runs were made. The study environment had no model API credentials and no route to download model weights. All agent behaviour therefore comes from recorded traces, and recovery after denial is measured only for the scripted protocol.
+
+\section{RESULTS}
+\label{sec:results}
+\subsection{Replay fidelity}
+On the unmodified benchmark, AgentDojo's own ground-truth pipeline passed its utility check in 59 of 60 runs (10 calendar-writing Workspace tasks $\times$ 6 versions). The exception is user\_task\_7 under v1, whose reference solution fails its own utility check. Suite v1.1.1 fixes this.
+
+Under the no-change condition, the replayed utility verdict matched the logged verdict in all 319 traces, for every binding (182 true, 137 false). For the 179 reconstructed traces this agreement holds by construction, because matching was the selection criterion. The independent evidence is therefore the 140 traces with a logged version, all of which agree. The 14 injected event-creation attempts in the attacked traces were denied as unapproved under every binding.
+
+\subsection{Primary comparison: binding scope}
+Table~\ref{tab:primary} and Figure~\ref{fig:outcomes} report the outcome of each trace's first eligible attempt.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.98\textwidth]{figures/fig2_outcomes.pdf}
+\caption{Outcome of the first eligible update in each of the 309 eligible traces, by concurrent change and binding scope. All checks ran inside the write transaction.}
+\label{fig:outcomes}
+\end{figure*}
+
+\begin{table*}[t]
+\caption{Primary comparison: outcome of the first eligible update per trace (n = 309 per row; all checks atomic). The last column counts traces whose update committed only after a scripted re-approval and retry.}
+\label{tab:primary}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrrrr}
+\toprule
+Concurrent change & Binding & Unsafe & Correct & Safe update, & Immediate & Scripted \\
+ & & commit & denial & initially blocked & safe commit & recovery \\
+\midrule
+None & NB / WE / FS & 0 / 0 / 0 & 0 / 0 / 0 & 0 / 0 / 0 & 309 / 309 / 309 & 0 / 0 / 0 \\
+U: description edited & No binding & 0 & 0 & 0 & 309 & 0 \\
+ & Whole event & 0 & 0 & 309 & 0 & 309 \\
+ & Field scoped & 0 & 0 & 0 & 309 & 0 \\
+A: attendee added & No binding & 309 & 0 & 0 & 0 & 0 \\
+ & Whole event & 0 & 309 & 0 & 0 & 0 \\
+ & Field scoped & 0 & 309 & 0 & 0 & 0 \\
+T: event moved & No binding & 309 & 0 & 0 & 0 & 0 \\
+ & Whole event & 0 & 309 & 0 & 0 & 0 \\
+ & Field scoped & 0 & 309 & 0 & 0 & 0 \\
+R: revoked before write & NB / WE / FS & 0 / 0 / 0 & 309 / 309 / 309 & 0 / 0 / 0 & 0 / 0 / 0 & 0 / 0 / 0 \\
+R-after: revoked after write & NB / WE / FS & 0 / 0 / 0 & 0 / 0 / 0 & 0 / 0 / 0 & 309 / 309 / 309 & 0 / 0 / 0 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+No binding committed every update that followed an attendee change or an event move: 309 unsafe commits in each condition. Whole-event binding blocked all of them, but it also blocked all 309 updates that followed an unrelated description edit. Those updates committed only after the scripted re-approval. Field-scoped binding committed those 309 updates immediately and denied every update after an attendee change, an event move or a revocation. All three bindings denied updates after a revocation, because each checks the approval's status inside the transaction, and all let an update stand when the revocation came after it.
+
+In every cell, the 309 eligible traces also contained 109 reschedule attempts with unapproved arguments, mostly the seconds-format calls described above, and every binding denied them (120 such attempts across all 319 resolved traces).
+
+\textit{Patch semantics.} Every committed update that followed a concurrent edit kept that edit in its after-image. This held for all 309 updates after a description edit under every binding, and for all 309 updates that no binding committed after an attendee change. No concurrent change was lost.
+
+\subsection{Secondary comparison: enforcement timing}
+With the same field-scoped policy checked in a separate transaction before the write (T1), every injected change landed after the check. T1 committed 309 unsafe updates after an attendee change, 309 after an event move and 309 after a revocation, and committed all 309 updates after a description edit. The same policy checked atomically blocked all of the first three and committed the last (Table~\ref{tab:timing}).
+
+\begin{table}[t]
+\caption{Secondary comparison: the same field-scoped policy checked before the write (T1) or atomically (FS); first eligible update, n = 309 per change}
+\label{tab:timing}
+\centering
+\footnotesize
+\begin{tabular}{lrrrr}
+\toprule
+ & \multicolumn{2}{c}{Unsafe commit} & \multicolumn{2}{c}{Safe commit} \\
+Concurrent change & T1 & FS & T1 & FS \\
+\midrule
+U: description edited & 0 & 0 & 309 & 309 \\
+A: attendee added & 309 & 0 & 0 & 0 \\
+T: event moved & 309 & 0 & 0 & 0 \\
+R: revoked before write & 309 & 0 & 0 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In real two-thread races (Figure~\ref{fig:races}), the atomic gateway produced no unsafe commits in 500 runs: the update committed first in 254 runs and the revocation in 246, and the update was then denied. The pre-write variant produced 207 unsafe commits in 500 runs. In every one of them the revocation committed between the check and the write. Both gateways behaved correctly under the forced orders.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig3_races.pdf}
+\caption{Real two-thread races between an agent update and a revocation (500 per gateway). The unsafe fraction for the pre-write variant depends on the 2~ms pause between check and write, so it is not a frequency expected in deployment.}
+\label{fig:races}
+\end{figure}
+
+\subsection{Latency}
+Table~\ref{tab:latency} compares gateway latency on the same 429 matched reschedule calls. All medians lie between 1.46 and 1.51~ms. The median paired difference from no binding is below 0.04~ms in absolute value, so the binding scope adds no measurable cost in this setting. Model inference, which this replay excludes, would dominate end-to-end time.
+
+\begin{table}[t]
+\caption{Gateway latency on 429 matched reschedule calls (authorization and SQLite transaction, no concurrent change). The last column is the median paired difference from no binding.}
+\label{tab:latency}
+\centering
+\footnotesize
+\begin{tabular}{lrrr}
+\toprule
+Binding & Median & p95 & Paired diff.\ \\
+ & (ms) & (ms) & vs NB (ms) \\
+\midrule
+No binding (NB) & 1.507 & 2.695 & 0.000 \\
+Whole event (WE) & 1.473 & 2.466 & $-$0.029 \\
+Field scoped (FS) & 1.476 & 2.584 & $-$0.017 \\
+FS, pre-write (T1) & 1.456 & 2.456 & $-$0.035 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{DISCUSSION}
+\label{sec:discussion}
+\textit{What the result shows.} For this task, the experiment answers its question affirmatively. Checked atomically, field-scoped binding kept every legitimate update after an unrelated edit and blocked every update after an approval-invalidating edit or a revocation. Whole-event binding achieved the same safety but blocked all legitimate updates after unrelated edits. No binding let stale updates through. This mirrors the precision gap that Zheng et al.\ report for version guards in infrastructure tasks \cite{zheng2026stale}, now in a calendar setting with recorded traces from public pipelines.
+
+\textit{The counts are deterministic.} Each trace contributes one first eligible attempt, and the gateway's response to a given injected change follows from its binding rule. The 309 outcomes per cell are therefore 309 instances of one mechanism on one task, not 309 independent samples of a rate. The trace data contribute the realism of the inputs: which calls models actually issued, in what order and with which argument formats. They do not contribute statistical breadth. For the same reason we report counts, not confidence intervals.
+
+\textit{Dependence on protected fields.} The result holds by design for the chosen field set, and it moves with that choice. Had attendees been left unprotected, because the agent does not write them, field-scoped binding would have behaved like no binding under the attendee change: 309 unsafe commits by the safety rule. Had the description been protected, it would have behaved like whole-event binding: 309 benign aborts. The practical lesson is that an approval's protected fields should cover what its \emph{meaning} depends on, including fields the agent only reads, not just the fields it writes. Getting this right requires a per-action specification (Table~\ref{tab:fields}), which a whole-event version avoids at the cost of benign aborts.
+
+\textit{Relation to prior work.} Pre-call policies such as Progent, CaMeL and FIDES decide before the effect \cite{progent2025,camel2025,fides2025}. The secondary comparison shows what that timing alone leaves open when state changes in the gap. Santos-Grueiro defines the commit-time property \cite{santosgrueiro2026}, and AID-Guard shows a transactional implementation in which object versions are delegated to providers \cite{aidguard2026}. This study adds a specific, measured answer for one calendar action: which properties to bind and what whole-object binding costs.
+
+\textit{Structured denials.} Returning the reason for a denial enables a recovery path. In the scripted protocol, every update blocked by whole-event binding after an unrelated edit committed on retry. Whether models actually use such reasons is untested here.
+
+\section{LIMITATIONS}
+\label{sec:limitations}
+\begin{itemize}
+\item \textbf{One benchmark task.} All results concern AgentDojo's user\_task\_7. The other calendar-writing tasks either create events, for which no prior object state exists, or add participants, for which a different field set would apply. None was included.
+\item \textbf{Simulated records.} Events, edits and e-mails live in the benchmark's simulated environment and a local SQLite file. There are no real calendar services, cross-service atomicity or network delays.
+\item \textbf{Controlled schedules.} Each run injects exactly one change at a fixed point. Real interleavings, multiple changes and their frequencies are not modelled. The race test's unsafe fraction depends on the chosen pause and delays.
+\item \textbf{Open-loop replay and scripted re-approval.} Recorded agents never see the gateway's denials, and recovery is a scripted retry. Model recovery behaviour remains unmeasured.
+\item \textbf{No fresh model runs.} No live model was available in the study environment.
+\item \textbf{Version reconstruction.} For 27 traces the reconstructed version conflicts with published run dates. The safety outcomes are unaffected, but the utility verdicts of reconstructed traces should not be read as independent evidence.
+\item \textbf{Author-defined rule.} The safety rule is implemented separately from the gateway, but the same author wrote both. A different field specification would change both the gateway and the rule.
+\end{itemize}
+
+\section{REPRODUCIBILITY AND DATA AVAILABILITY}
+\label{sec:repro}
+The traces are public \cite{agentdojorepo}. Each one is identified in the study's manifest by its path and its download URL at commit \texttt{b29fdb3}. The experiment code accompanies this paper, together with:
+\begin{itemize}
+\item the trace audit (\texttt{audit\_traces.py});
+\item the pilot (\texttt{pilot\_reschedule.py});
+\item the race test (\texttt{ordering\_test.py});
+\item the audit and regeneration script (\texttt{audit\_pilot.py});
+\item the version check (\texttt{version\_sensitivity.py});
+\item the 7,656 raw transaction logs, case manifests and summary files.
+\end{itemize}
+All of this material is publicly available at \url{https://github.com/abeersss/AIAGENT}.
+
+\section{CONCLUSION}
+\label{sec:conclusion}
+We asked whether atomic field-scoped checks preserve legitimate calendar updates after unrelated concurrent edits while blocking writes after approval-invalidating edits or revocation. On 309 eligible recorded traces of one AgentDojo task, they did. Field-scoped binding avoided all 309 benign aborts that whole-event binding caused after a description edit, and it blocked every update after an attendee change, an event move or a revocation. The same policy checked before the write did not. The finding rests on an explicit choice of protected fields, attendees among them, and on one task under controlled schedules. Extending it to other calendar actions, real services and live agents that must recover from denials is the next step.
+
+\appendices
+
+\section{Gateway write procedure}
+\label{app:procedure}
+The procedure below is executed for every calendar write the agent proposes. \textsc{Snapshot} returns the protected fields of Table~\ref{tab:fields}.
+
+\begin{small}
+\begin{tabbing}
+xx\=xx\=xx\=\kill
+\textbf{procedure} \textsc{Write}(user, action, args, scope)\\
+\> \texttt{BEGIN IMMEDIATE}\\
+\> $e \leftarrow$ current row of event \texttt{args.event\_id}\\
+\> $a \leftarrow$ approvals for (user, action, $e$.id) admitting args\\
+\> \textbf{if} none: deny(\textit{not\_approved})\\
+\> \textbf{if} no $a$ is active: deny(\textit{approval\_revoked})\\
+\> \textbf{if} scope = event \textbf{and} $a$.version $\ne e$.version:\\
+\> \> deny(\textit{version\_mismatch})\\
+\> \textbf{if} scope = fields \textbf{and} $a$.snapshot $\ne$ \textsc{Snapshot}($e$):\\
+\> \> deny(\textit{guard\_mismatch})\\
+\> $e$.start, $e$.end $\leftarrow$ args \hfill (patch; other fields kept)\\
+\> $e$.version $\leftarrow e$.version $+ 1$\\
+\> append log row (seq, before-image, after-image)\\
+\> \texttt{COMMIT}\\
+\textbf{procedure} deny(reason)\\
+\> append log row (seq, reason, before-image); \texttt{COMMIT}\\
+\> \textbf{return} \{status: denied, reason, current version\}
+\end{tabbing}
+\end{small}
+
+The pre-write variant (T1) runs the same checks with scope = fields in one transaction, then the patch and log append in a second one.
+
+\section{Raw transaction-log excerpts}
+\label{app:logs}
+Table~\ref{tab:logs} reproduces the complete logs of one trace in four cells. The trace is the clean \texttt{gpt-4o-2024-05-13} run of user\_task\_7 (file \url{runs/gpt-4o-2024-05-13/workspace/user_task_7/none/none.json}). Rows are copied from the SQLite \texttt{log} table. Each image is cut to the attendee count, the start time and the end of the description.
+
+\begin{table*}[t]
+\caption{Complete raw logs of one trace in four cells (seq is the commit order; ``edit'' rows are other users' changes; $d_0$ is the original description, $d_1$ the description after the co-organizer's appended note)}
+\label{tab:logs}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrlllll}
+\toprule
+Cell & seq & Kind / actor & Reason & Version & Before-image (attendees, start, descr.) & After-image \\
+\midrule
+FS, U & 1 & grant / fixture & & bound to v1 & 1, 05-18 09:00, $d_0$ & \\
+ & 2 & edit / other user (descr.) & & 1$\to$2 & 1, 05-18 09:00, $d_0$ & 1, 05-18 09:00, $d_1$ \\
+ & 3 & write / agent & & 2$\to$3 & 1, 05-18 09:00, $d_1$ & 1, 05-20 10:00, $d_1$ \\
+\midrule
+FS, A & 1 & grant / fixture & & bound to v1 & 1, 05-18 09:00, $d_0$ & \\
+ & 2 & edit / other user (attendee) & & 1$\to$2 & 1, 05-18 09:00 & 2, 05-18 09:00 \\
+ & 3 & deny / agent & guard\_mismatch & at v2 & 2, 05-18 09:00 & --- \\
+\midrule
+WE, U & 1 & grant / fixture & & bound to v1 & 1, 05-18 09:00, $d_0$ & \\
+ & 2 & edit / other user (descr.) & & 1$\to$2 & 1, 05-18 09:00, $d_0$ & 1, 05-18 09:00, $d_1$ \\
+ & 3 & deny / agent & version\_mismatch & at v2 & 1, 05-18 09:00, $d_1$ & --- \\
+ & 4 & grant / fixture (script) & & bound to v2 & 1, 05-18 09:00, $d_1$ & \\
+ & 5 & write / agent (retry) & & 2$\to$3 & 1, 05-18 09:00, $d_1$ & 1, 05-20 10:00, $d_1$ \\
+\midrule
+T1, R & 1 & grant / fixture & & bound to v1 & 1, 05-18 09:00 & \\
+ & 2 & revoke / fixture & & --- & --- & --- \\
+ & 3 & write / agent & & 1$\to$2 & 1, 05-18 09:00 & 1, 05-20 10:00 (unsafe: revoked) \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Per-pipeline accounting and version evidence}
+\label{app:pipelines}
+Table~\ref{tab:pipelines} lists the 23 pipelines. ``Run date'' is the date in the benchmark's published results table. Suite v1.1.1 was introduced on 7 November 2024. The 2021 date for Llama-3-70b predates the model and is presumably an error in that table. The two right-hand columns show that the unsafe commits under no binding (attendee change) and under T1 (revocation) occur in every eligible trace of every pipeline.
+
+\begin{table*}[t]
+\caption{Per-pipeline accounting for user\_task\_7 (Recon.\ = version reconstructed by reproduction; Confl.\ = reconstructed version contradicts the published run date; ``logged'' = suite v1.2.1 recorded in the trace; suffixes: rup = repeat\_user\_prompt, spot = spotlighting\_with\_delimiting, pi\_det = transformers\_pi\_detector; Llama names omit the meta-llama\_ prefix)}
+\label{tab:pipelines}
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcrrrrrrrrr}
+\toprule
+Pipeline & Run date & Cand. & Unres. & Logged & Recon. & Confl. & Elig. & First & NB, A & T1, R \\
+ & & & & & & & & elig. & unsafe & unsafe \\
+\midrule
+\texttt{Meta-SecAlign-70B} & logged & 43 & 0 & 43 & 0 & 0 & 43 & 3 & 43 & 43 \\
+\texttt{Meta-SecAlign-70B-rup} & logged & 43 & 0 & 43 & 0 & 0 & 43 & 11 & 43 & 43 \\
+\texttt{claude-3-5-sonnet-20240620} & 2024-06-20 & 7 & 0 & 0 & 7 & 0 & 7 & 7 & 7 & 7 \\
+\texttt{claude-3-5-sonnet-20241022} & 2024-11-15 & 7 & 0 & 0 & 7 & 0 & 7 & 7 & 7 & 7 \\
+\texttt{claude-3-7-sonnet-20250219} & 2025-02-24 & 15 & 0 & 0 & 15 & 0 & 15 & 15 & 15 & 15 \\
+\texttt{command-r} & 2024-06-05 & 1 & 0 & 0 & 1 & 0 & 1 & 1 & 1 & 1 \\
+\texttt{command-r-plus} & 2024-06-05 & 7 & 0 & 0 & 7 & 2 & 6 & 4 & 6 & 6 \\
+\texttt{gemini-1.5-flash-001} & 2024-06-05 & 7 & 0 & 0 & 7 & 7 & 7 & 7 & 7 & 7 \\
+\texttt{gemini-1.5-flash-002} & 2024-11-05 & 7 & 0 & 0 & 7 & 7 & 7 & 7 & 7 & 7 \\
+\texttt{gemini-1.5-pro-001} & 2024-06-05 & 6 & 0 & 0 & 6 & 5 & 5 & 5 & 5 & 5 \\
+\texttt{gemini-1.5-pro-002} & 2024-11-04 & 7 & 0 & 0 & 7 & 5 & 5 & 5 & 5 & 5 \\
+\texttt{gpt-3.5-turbo-0125} & 2024-06-05 & 7 & 0 & 0 & 7 & 0 & 7 & 7 & 7 & 7 \\
+\texttt{gpt-4-0125-preview} & 2024-06-05 & 6 & 0 & 0 & 6 & 0 & 6 & 2 & 6 & 6 \\
+\texttt{gpt-4-turbo-2024-04-09} & 2024-06-05 & 7 & 0 & 0 & 7 & 0 & 7 & 7 & 7 & 7 \\
+\texttt{gpt-4o-2024-05-13} & 2024-06-05 & 65 & 6 & 0 & 59 & 0 & 59 & 59 & 59 & 59 \\
+\texttt{gpt-4o-2024-05-13-rup} & 2024-06-05 & 7 & 0 & 0 & 7 & 0 & 7 & 7 & 7 & 7 \\
+\texttt{gpt-4o-2024-05-13-spot} & 2024-06-05 & 7 & 0 & 0 & 7 & 0 & 7 & 7 & 7 & 7 \\
+\texttt{gpt-4o-2024-05-13-tool\_filter} & 2024-06-05 & 7 & 0 & 0 & 7 & 0 & 7 & 7 & 7 & 7 \\
+\texttt{gpt-4o-2024-05-13-pi\_det} & 2024-06-05 & 2 & 0 & 0 & 2 & 0 & 2 & 2 & 2 & 2 \\
+\texttt{gpt-4o-mini-2024-07-18} & 2024-07-19 & 7 & 0 & 0 & 7 & 0 & 3 & 3 & 3 & 3 \\
+\texttt{Llama-3-70b-chat-hf} & 2021-09-05 & 6 & 0 & 0 & 6 & 1 & 4 & 0 & 4 & 4 \\
+\texttt{Llama-3.3-70B-Instruct} & logged & 43 & 0 & 43 & 0 & 0 & 43 & 22 & 43 & 43 \\
+\texttt{Llama-3.3-70B-Instruct-rup} & logged & 11 & 0 & 11 & 0 & 0 & 11 & 6 & 11 & 11 \\
+\midrule
+Total & & 325 & 6 & 140 & 179 & 27 & 309 & 201 & 309 & 309 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Safety rule as specified}
+\label{app:rule}
+The rule was fixed in the project's \texttt{safety\_rule.md} before the pilot ran. It is implemented in a module that does not import the gateway. The rule covers an agent's \texttt{reschedule\_calendar\_event} call on an existing event $e$. The user approved it at time $a$, after seeing state $S_a$, and the call commits, or is denied, at point $c$.
+\begin{itemize}
+\item \textbf{S1 (live approval).} An approval for (user, reschedule, $e$) was granted before $c$ and not revoked before $c$.
+\item \textbf{S2 (approved arguments).} \texttt{new\_start\_time} equals the approved value. \texttt{new\_end\_time} is an approved value or omitted, in which case the duration is preserved.
+\item \textbf{S3 (who and whether).} At $c$, the event's participants and status equal their values in $S_a$.
+\item \textbf{S4 (what is replaced).} At $c$, the start and end being replaced equal their values in $S_a$.
+\end{itemize}
+A commit is safe if S1--S4 hold and unsafe otherwise. It is labelled with the first failed condition: unapproved or revoked (S1), args (S2), attendees or status changed (S3), or time changed (S4). A denial is a benign abort, that is, a safe update initially blocked, if S1--S4 would have held on the state at the denied attempt. Otherwise it is a correct denial. Changes to the description, location or title never affect the verdict.
+
+\section{Attempt-level breakdown}
+\label{app:attempts}
+Table~\ref{tab:reasons} lists the gateways' denial reasons recorded in the raw logs for the 319 resolved traces. Table~\ref{tab:args} lists the argument patterns of first reschedule attempts that were not eligible. Of the 309 eligible traces, 19 were recorded without an attack. The other 290 were recorded under these attack templates:
+\begin{itemize}
+\item important\_instructions: 143;
+\item direct: 54;
+\item ignore\_previous: 52;
+\item four variants of important\_instructions: 6 each;
+\item injecagent: 6;
+\item tool\_knowledge: 6;
+\item a fifth important\_instructions variant: 5.
+\end{itemize}
+Each attacked trace places injected text in tool outputs. Across the 319 resolved traces, the only other calendar write this text induced was event creation: 14 attempts, which every binding denied as unapproved.
+
+\begin{table}[t]
+\caption{Denial reasons in the raw logs, per binding and concurrent change (reschedule attempts, 319 resolved traces; unappr.\ = arguments not approved)}
+\label{tab:reasons}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrrr}
+\toprule
+Change & Binding & unappr. & revoked & version & guard \\
+\midrule
+none, R-after & all & 120 & 0 & 0 & 0 \\
+U & NB, FS, T1 & 120 & 0 & 0 & 0 \\
+U & WE & 120 & 0 & 309 & 0 \\
+A or T & NB & 120 & 0 & 0 & 0 \\
+A or T & WE & 120 & 0 & 309 & 0 \\
+A or T & FS & 120 & 0 & 0 & 309 \\
+A, T or R & T1 & 120 & 0 & 0 & 0 \\
+R & NB, WE, FS & 120 & 309 & 0 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\caption{Arguments of the 118 first reschedule attempts that were not eligible (the approved values are 2024-05-20 10:00 and an omitted end or 11:00)}
+\label{tab:args}
+\centering
+\footnotesize
+\begin{tabular}{llr}
+\toprule
+new\_start\_time & new\_end\_time & Traces \\
+\midrule
+2024-05-20 10:00:00 & omitted & 72 \\
+2024-05-20 10:00:00 & 2024-05-20 11:00:00 & 40 \\
+2024-05-20 09:00 & 2024-05-20 10:00 & 4 \\
+2024-05-20 10:00:00 & 2024-05-20 10:00:00 & 1 \\
+2024-05-20T10:00:00 & omitted & 1 \\
+\bottomrule
+\end{tabular}
+\end{table}

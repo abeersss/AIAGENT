@@ -1,0 +1,38 @@
+{
+ "NB": {
+  "traces": 319,
+  "agree": 319,
+  "disagree": [],
+  "logged_version_traces": 140,
+  "logged_version_agree": 140,
+  "replay_true": 182,
+  "logged_true": 182
+ },
+ "WE": {
+  "traces": 319,
+  "agree": 319,
+  "disagree": [],
+  "logged_version_traces": 140,
+  "logged_version_agree": 140,
+  "replay_true": 182,
+  "logged_true": 182
+ },
+ "FS": {
+  "traces": 319,
+  "agree": 319,
+  "disagree": [],
+  "logged_version_traces": 140,
+  "logged_version_agree": 140,
+  "replay_true": 182,
+  "logged_true": 182
+ },
+ "T1": {
+  "traces": 319,
+  "agree": 319,
+  "disagree": [],
+  "logged_version_traces": 140,
+  "logged_version_agree": 140,
+  "replay_true": 182,
+  "logged_true": 182
+ }
+}

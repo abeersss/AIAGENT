@@ -1,0 +1,415 @@
+{
+ "pinned_commit": "b29fdb375df61261662eea53b7e3d430bc2bcda2",
+ "pipelines_in_repo": 29,
+ "pipelines_with_workspace_calendar_traces": 29,
+ "trace_files": 4160,
+ "status": {
+  "ok": 4160
+ },
+ "replayable": 3646,
+ "by_task": {
+  "user_task_4": {
+   "replayable_traces": 410,
+   "pipelines": 29,
+   "clean": 29,
+   "with_any_write_call": 360
+  },
+  "user_task_6": {
+   "replayable_traces": 410,
+   "pipelines": 29,
+   "clean": 29,
+   "with_any_write_call": 372
+  },
+  "user_task_7": {
+   "replayable_traces": 371,
+   "pipelines": 23,
+   "clean": 22,
+   "with_any_write_call": 325
+  },
+  "user_task_8": {
+   "replayable_traces": 394,
+   "pipelines": 28,
+   "clean": 28,
+   "with_any_write_call": 390
+  },
+  "user_task_9": {
+   "replayable_traces": 324,
+   "pipelines": 27,
+   "clean": 27,
+   "with_any_write_call": 321
+  },
+  "user_task_12": {
+   "replayable_traces": 410,
+   "pipelines": 29,
+   "clean": 29,
+   "with_any_write_call": 409
+  },
+  "user_task_15": {
+   "replayable_traces": 298,
+   "pipelines": 24,
+   "clean": 24,
+   "with_any_write_call": 288
+  },
+  "user_task_18": {
+   "replayable_traces": 303,
+   "pipelines": 24,
+   "clean": 24,
+   "with_any_write_call": 259
+  },
+  "user_task_20": {
+   "replayable_traces": 402,
+   "pipelines": 27,
+   "clean": 27,
+   "with_any_write_call": 255
+  },
+  "user_task_21": {
+   "replayable_traces": 324,
+   "pipelines": 27,
+   "clean": 27,
+   "with_any_write_call": 312
+  }
+ },
+ "by_pipeline": {
+  "Meta-SecAlign-70B": {
+   "files": 430,
+   "replayable": 430,
+   "conditions": [
+    "direct",
+    "ignore_previous",
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "v1.2.1"
+   ]
+  },
+  "Meta-SecAlign-70B-repeat_user_prompt": {
+   "files": 430,
+   "replayable": 430,
+   "conditions": [
+    "direct",
+    "ignore_previous",
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "v1.2.1"
+   ]
+  },
+  "claude-3-5-sonnet-20240620": {
+   "files": 70,
+   "replayable": 70,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "claude-3-5-sonnet-20241022": {
+   "files": 70,
+   "replayable": 70,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "claude-3-7-sonnet-20250219": {
+   "files": 150,
+   "replayable": 150,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "claude-3-haiku-20240307": {
+   "files": 70,
+   "replayable": 49,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "claude-3-opus-20240229": {
+   "files": 70,
+   "replayable": 9,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "claude-3-sonnet-20240229": {
+   "files": 70,
+   "replayable": 56,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "claude-3-sonnet-20240229-repeat_user_prompt": {
+   "files": 10,
+   "replayable": 8,
+   "conditions": [
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "command-r": {
+   "files": 70,
+   "replayable": 70,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "command-r-plus": {
+   "files": 70,
+   "replayable": 70,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "gemini-1.5-flash-001": {
+   "files": 70,
+   "replayable": 70,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "gemini-1.5-flash-002": {
+   "files": 70,
+   "replayable": 56,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "gemini-1.5-pro-001": {
+   "files": 70,
+   "replayable": 64,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "gemini-1.5-pro-002": {
+   "files": 70,
+   "replayable": 70,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "gemini-2.0-flash-001": {
+   "files": 150,
+   "replayable": 120,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "gemini-2.0-flash-exp": {
+   "files": 70,
+   "replayable": 56,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "gpt-3.5-turbo-0125": {
+   "files": 70,
+   "replayable": 70,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "gpt-4-0125-preview": {
+   "files": 70,
+   "replayable": 70,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "gpt-4-turbo-2024-04-09": {
+   "files": 70,
+   "replayable": 70,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "gpt-4o-2024-05-13": {
+   "files": 660,
+   "replayable": 659,
+   "conditions": [
+    "captcha_dos",
+    "direct",
+    "dos",
+    "felony_dos",
+    "ignore_previous",
+    "important_instructions",
+    "important_instructions_no_model_name",
+    "important_instructions_no_names",
+    "important_instructions_no_user_name",
+    "important_instructions_wrong_model_name",
+    "important_instructions_wrong_user_name",
+    "injecagent",
+    "none",
+    "offensive_email_dos",
+    "swearwords_dos",
+    "tool_knowledge"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "gpt-4o-2024-05-13-repeat_user_prompt": {
+   "files": 70,
+   "replayable": 70,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "gpt-4o-2024-05-13-spotlighting_with_delimiting": {
+   "files": 70,
+   "replayable": 70,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "gpt-4o-2024-05-13-tool_filter": {
+   "files": 70,
+   "replayable": 70,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "gpt-4o-2024-05-13-transformers_pi_detector": {
+   "files": 70,
+   "replayable": 70,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "gpt-4o-mini-2024-07-18": {
+   "files": 70,
+   "replayable": 70,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "meta-llama_Llama-3-70b-chat-hf": {
+   "files": 70,
+   "replayable": 63,
+   "conditions": [
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "None"
+   ]
+  },
+  "meta-llama_Llama-3.3-70B-Instruct": {
+   "files": 430,
+   "replayable": 258,
+   "conditions": [
+    "direct",
+    "ignore_previous",
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "v1.2.1"
+   ]
+  },
+  "meta-llama_Llama-3.3-70B-Instruct-repeat_user_prompt": {
+   "files": 430,
+   "replayable": 258,
+   "conditions": [
+    "direct",
+    "ignore_previous",
+    "important_instructions",
+    "none"
+   ],
+   "logged_versions": [
+    "v1.2.1"
+   ]
+  }
+ },
+ "pipelines_without_traces": []
+}

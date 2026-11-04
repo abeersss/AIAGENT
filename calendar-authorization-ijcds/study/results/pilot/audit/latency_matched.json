@@ -1,0 +1,39 @@
+{
+ "NB": {
+  "matched_calls": 429,
+  "median_ms": 1.5069000000949018,
+  "p95_ms": 2.6948099998662656,
+  "median_paired_diff_vs_NB_ms": 0.0,
+  "p95_paired_diff_vs_NB_ms": 0.0
+ },
+ "WE": {
+  "matched_calls": 429,
+  "median_ms": 1.4725049998105533,
+  "p95_ms": 2.4663149999923917,
+  "median_paired_diff_vs_NB_ms": -0.028587000088009518,
+  "p95_paired_diff_vs_NB_ms": 1.0827989999597776
+ },
+ "FS": {
+  "matched_calls": 429,
+  "median_ms": 1.4757769999960146,
+  "p95_ms": 2.584466999905999,
+  "median_paired_diff_vs_NB_ms": -0.016536000202904688,
+  "p95_paired_diff_vs_NB_ms": 1.0071830001834314
+ },
+ "T1": {
+  "matched_calls": 429,
+  "median_ms": 1.456226999835053,
+  "p95_ms": 2.4563830002080067,
+  "median_paired_diff_vs_NB_ms": -0.035291999665787444,
+  "p95_paired_diff_vs_NB_ms": 1.0402500001873705
+ },
+ "_environment": {
+  "python": "3.13.18",
+  "sqlite": "3.53.1",
+  "platform": "Linux-6.18.44-fc-v233-x86_64-with-glibc2.39",
+  "cpu_count": 2,
+  "cpu": "\t: Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "journal_mode": "DELETE",
+  "synchronous": "default (FULL)"
+ }
+}

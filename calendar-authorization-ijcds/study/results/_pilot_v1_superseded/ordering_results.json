@@ -1,0 +1,65 @@
+{
+ "forced": {
+  "A2_committime_diffscope:revoke_first": {
+   "outcomes": [
+    "correct_block"
+   ],
+   "commit_order": [
+    "revoke",
+    "deny"
+   ]
+  },
+  "A2_committime_diffscope:write_first": {
+   "outcomes": [
+    "safe_commit"
+   ],
+   "commit_order": [
+    "write",
+    "revoke"
+   ]
+  },
+  "T1_precheck_fieldscope:revoke_first": {
+   "outcomes": [
+    "correct_block"
+   ],
+   "commit_order": [
+    "revoke",
+    "deny"
+   ]
+  },
+  "T1_precheck_fieldscope:write_first": {
+   "outcomes": [
+    "safe_commit"
+   ],
+   "commit_order": [
+    "write",
+    "revoke"
+   ]
+  }
+ },
+ "stress": {
+  "A2_committime_diffscope": {
+   "n": 20,
+   "seed": 20261104,
+   "unsafe_commits": 0,
+   "safe_commits": 7,
+   "correct_blocks": 13,
+   "patterns": {
+    "['correct_block'] order=['revoke', 'deny']": 13,
+    "['safe_commit'] order=['write', 'revoke']": 7
+   }
+  },
+  "T1_precheck_fieldscope": {
+   "n": 20,
+   "seed": 20261104,
+   "unsafe_commits": 8,
+   "safe_commits": 4,
+   "correct_blocks": 8,
+   "patterns": {
+    "['correct_block'] order=['revoke', 'deny']": 8,
+    "['unsafe_commit'] order=['revoke', 'write']": 8,
+    "['safe_commit'] order=['write', 'revoke']": 4
+   }
+  }
+ }
+}
