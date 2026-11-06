@@ -39,7 +39,7 @@ Replay, injected schedules and fresh runs are reported separately. **No fresh mo
 
 - Built with the official IJCDS LaTeX package (`IJCDS_Latex_4_8_2024.zip`). The class, bst, master file and style files are unchanged. Page size is the template's active setting: US Letter, 8.5 × 11 in (21.6 × 27.9 cm, the "21 × 28 cm" page). The A4 line in the template is commented out.
 - 10 pages including references and appendices (limit 10–15).
-- Abstract: 188 words by whitespace count (limit 200).
+- Abstract: 217 words, as chosen by the author to meet the submission system's 200–300-word rule. The IJCDS author guide asks for no more than 200 words, so the editor may ask for it to be shortened.
 - No undefined citations or references and no overfull boxes. I inspected every page as an image.
 - 18 references, IEEE numbered in citation order, each one cited. Preprints are marked.
   - [5] CaMeL now cites the published version: IEEE SaTML 2026, Munich, pp. 587–618, DOI 10.1109/SaTML68715.2026.00040. Checked on IEEE Xplore (document 11691650) on 6 Nov 2026.
@@ -55,7 +55,7 @@ Replay, injected schedules and fresh runs are reported separately. **No fresh mo
 | §6B: "No concurrent change was lost" | Removed. Preservation is now limited to description and attendee edits as shown in the after-images. Event moves are reported separately: under NB and T1, all 309 committed updates overwrote the moved start and end (lost updates). |
 | §6C and abstract: "real races" | Now "local two-thread SQLite trials", with the artificial 2 ms check-to-write gap stated in the abstract and the text. |
 | §6D: "adds no measurable cost"; inference would dominate | Replaced with the observed result: median paired differences under 0.04 ms in absolute value in matched no-change runs. The inference claim is removed. |
-| Abstract length | Cut to 188 words. |
+| Abstract length | First cut to 188 words; then replaced by the author's 217-word version to meet the submission system's 200-word minimum. |
 | Affiliation, masthead placeholders | Byline is "Dr. Abeer Alshammari, Research Practitioner, Kuwait". Publisher fields are handled as described in §2. |
 | [5] CaMeL, [10] Santos-Grueiro | Updated as described in §2. The contribution is repositioned: atomic validation is prior work, and this paper measures which fields to bind and what whole-event binding costs. |
 | Reproducibility statement | Section 9 now gives the repository and folder, and lists the README with the run commands and package versions. |
