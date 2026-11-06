@@ -34,3 +34,10 @@
 | 28 | SQLite, "Transaction" documentation | www2.sqlite.org/lang_transaction.html | verified |
 
 Before submission, re-resolve every DOI through Crossref, as was done for the Turbo-NAFS paper.
+
+## Re-verification, 6 Nov 2026 (after reviewer report)
+
+| Reference | Opened | Result |
+| --- | --- | --- |
+| E. Debenedetti et al., "Defeating prompt injections by design" | doi.org/10.1109/SaTML68715.2026.00040 → ieeexplore.ieee.org/document/11691650 (page metadata) | Published: 2026 IEEE Conference on Secure and Trustworthy Machine Learning (SaTML), Munich, pp. 587–618, 23 Mar. 2026; 10 authors as in the preprint. The citation was switched to this version. |
+| I. Santos-Grueiro, "Temporary authority, permanent effects: Commit-time authorization for LLM agents" | arxiv.org/abs/2607.10487v2 and the v2 e-print source | v2 was revised 31 Oct 2026. It adds CommitGate, atomic validation or single-use grant consumption at the sink, a five-model service study, LangChain, OpenHands and cloud-contention services, and an Atomix SQLite sink that revalidates in its write transaction. Its premises name object versions in the examples. It notes that unneeded premise slots cause benign aborts; I found no measurement of this. |

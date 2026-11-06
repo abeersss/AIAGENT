@@ -17,8 +17,9 @@ The data are 319 recorded traces from 23 public model pipelines, all for one Age
 | Event moved | 309 **unsafe** commits | 309 correct denials | 309 correct denials |
 | Revocation before write | 309 correct denials | 309 correct denials | 309 correct denials |
 
-- **Pre-write check:** the same field policy checked in a separate transaction before the write committed all 309 unsafe updates. It also committed 207 of 500 real two-thread races; the atomic version committed none.
-- **Latency:** the median is about 1.5 ms under every binding.
+- **Pre-write check:** the same field policy checked in a separate transaction before the write committed all 309 unsafe updates. It also committed 207 of 500 local two-thread SQLite trials with an artificial 2 ms check-to-write gap; the atomic version committed none.
+- **Lost updates:** under no binding and under the pre-write check, every update committed after a concurrent move overwrote the moved time. Patch writes preserved concurrent description and attendee edits.
+- **Latency:** the median is about 1.5 ms under every binding; median paired differences from no binding were under 0.04 ms in matched no-change runs.
 
 ## Layout
 
